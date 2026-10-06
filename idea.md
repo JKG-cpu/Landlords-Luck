@@ -65,5 +65,5 @@ Auctions happen randomly, but one auction happens every 10 in-game days (meaning
 
 # Steps to start
 
-Prolly start working on setting up lands, that have different attributes (like size, type, etc).
-Also work on upgrades, right now keep just simple colored shapes, then work on the pixel art.
+Finished the Logic part, need to start on the menus (just placeholder text for now).
+Then work on the pixl art!!! (REMEMBER TO USE LAPSE!!!)
