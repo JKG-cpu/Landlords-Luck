@@ -1,49 +1,52 @@
-class_name EconomyTest
+class_name PropertyTests
 extends Node
 
 func _ready() -> void:
-	# Test player money
 	var player = Player.new()
+	player.add_money(10_000)
 	add_child(player)
 	
-	player.player_data = PlayerData.new()
-	player.add_money(10_000)
+	# Create Properties
+	var prop1 = Property.new("My Property 1", 5_000, 500, 2.5, Property.PropertyType.LAND)
 	
-	print("Player Money: " + str(player.player_data.money) + "\n")
+	print("Created: " + prop1.get_property_name())
+	print("Details: ")
+	print("Property Cost: " + str(prop1.get_property_cost()))
+	print("Rent: " + str(prop1.get_rent_price()))
 	
-	# Test Property Creation
-	var property = Property.new()
-	property.property_data = PropertyData.new()
-	property.change_land_name("My Property 1")
-	property.set_purchase_price(5_000)
-	property.set_rent_price(100)
+	var prop1_purchased = player.purchase_property(prop1)
 	
-	var property2 = Property.new()
-	property2.property_data = PropertyData.new()
-	property2.change_land_name("My Property 2")
-	property2.set_purchase_price(5_000)
-	property2.set_rent_price(100)
+	print("Property Purchased: " + str(prop1_purchased))
 	
-	var property3 = Property.new()
-	property3.property_data = PropertyData.new()
-	property3.change_land_name("My Property 3")
-	property3.set_purchase_price(5_000)
-	property3.set_rent_price(100)
-	
-	print("Created three properties:")
-	print(property.get_property_name() + " | " 
-		+ property2.get_property_name() + " | " 
-		+ property3.get_property_name() + "\n"
-	)
-	
-	# Test Property Purchasing
-	print("Player purchased property 1: " + str(player.purchase_property(property)))
-	print("Player purchased property 2: " + str(player.purchase_property(property2)))
-	print("Player purchased property 3: " + str(player.purchase_property(property3)))
 	print()
+	
+	var prop2 = Property.new("My Property 2", 5_000, 500, 2.5, Property.PropertyType.LAND)
+	
+	print("Created: " + prop2.get_property_name())
+	print("Details: ")
+	print("Property Cost: " + str(prop2.get_property_cost()))
+	print("Rent: " + str(prop2.get_rent_price()))
+	
+	var prop2_purchased = player.purchase_property(prop2)
+	
+	print("Property Purchased: " + str(prop2_purchased))
+	
+	print()
+	
+	var prop3 = Property.new("My Property 3", 5_000, 500, 2.5, Property.PropertyType.LAND)
+	
+	print("Created: " + prop3.get_property_name())
+	print("Details: ")
+	print("Property Cost: " + str(prop3.get_property_cost()))
+	print("Rent: " + str(prop3.get_rent_price()))
+	
+	var prop3_purchased = player.purchase_property(prop3)
+	
+	print("Property Purchased: " + str(prop3_purchased))
+	
+	print()	
 
+	print("Player Money Remaining: " + str(player.get_money()))
 	print("Player Properties:")
 	for prop in player.get_properties():
-		print("Property: " + prop.get_property_name())
-		print("Rent: " + str(prop.get_rent_price()))
-		print("Cost: " + str(prop.get_purchase_price()))
+		print("Property Name: " + prop.get_property_name())

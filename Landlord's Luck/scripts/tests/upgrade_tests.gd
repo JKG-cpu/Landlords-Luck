@@ -3,52 +3,77 @@ extends Node
 
 func _ready() -> void:
 	var player = Player.new()
+	player.add_money(10_000)
 	add_child(player)
 	
-	player.player_data = PlayerData.new()
-	player.add_money(10_000)
-	
-	var property = Property.new()
-	property.property_data = PropertyData.new()
-	property.set_purchase_price(2_000)
-	property.set_rent_price(500)
-	property.change_land_name("My Property")
-	
-	player.purchase_property(property)
-	
-	print("Starting Property Data:")
-	print("Sell Price: " + str(property.get_sell_price()))
-	print("Rent Price: " + str(property.get_rent_price()))
-	print()
-	
-	# Advertising Upgrade
-	var ad_upgrade = AdvertisingUpgrade.new()
-	ad_upgrade.upgrade_name = "Upgrade Ads"
-	ad_upgrade.upgrade_cost = 2_000
-	
-	# Looks Upgrade
-	var looks_upgrade = LooksUpgrade.new()
-	looks_upgrade.upgrade_name = "Upgrade Looks"
-	looks_upgrade.upgrade_cost = 2_000
-	
-	# Money Upgrade
-	var money_upgrade = MoneyUpgrade.new()
-	money_upgrade.upgrade_name = "Increase Rent"
-	money_upgrade.upgrade_cost = 2_000
-	
-	print("Created all upgrades:")
-	print("Ad Upgrade: " + ad_upgrade.upgrade_name)
-	print("Looks Upgrade: " + looks_upgrade.upgrade_name)
-	print("Money Upgrade: " + money_upgrade.upgrade_name)
-	print()
+	# Create Test Property
+	var prop = Property.new(
+		"My Property", 2_000, 500, 2.0, Property.PropertyType.LAND
+	)
 
-	player.purchase_upgrade(property, ad_upgrade)
-	player.purchase_upgrade(property, looks_upgrade)
-	player.purchase_upgrade(property, money_upgrade)
+	var result = player.purchase_property(prop)
 	
-	print("Purchased Upgrades")
+	if result:
+		print("Player Purchased Property")
+	else:
+		print("Error purchasing property!")	
+		
 	print()
 	
-	print("Ending Property Data:")
-	print("Sell Price: " + str(property.get_sell_price()))
+	# Add 3 Upgrades
+	var advertisment_upgrade = AdvertisingUpgrade.new(
+		150.0, 0.4
+	)
+	
+	print("Created Upgrade. Cost: " + str(advertisment_upgrade.get_cost()))
+
+	var looks_upgrade = LooksUpgrade.new(
+		200.0, 0.4, 1.3
+	)
+
+	print("Created Looks Upgrade. Cost: " + str(looks_upgrade.get_cost()))
+
+	var money_upgrade = MoneyUpgrade.new(
+		250.0, 1.1
+	)
+
+	print("Created Money Upgrade. Cost: " + str(money_upgrade.get_cost()))
+	
+	print()
+	
+	print("Purchasing Upgrades...")
+	
+	result = prop.purchase_advertising_upgrade(advertisment_upgrade, player.get_money())
+	
+	if result.success:
+		player.spend_money(result.cost)
+	else:
+		print("Not enough money...")
+	
+	result = prop.purchase_looks_upgrade(looks_upgrade, player.get_money())
+	
+	if result.success:
+		player.spend_money(result.cost)
+	else:
+		print("Not enough money...")
+	
+	result = prop.purchase_money_upgrade(money_upgrade, player.get_money())
+	
+	if result.success:
+		player.spend_money(result.cost)
+	else:
+		print("Not enough money...")
+	
+	print()
+	
+	var prop_from_player = player.get_properties()
+	var property = prop_from_player[0]
+	
+	print(property.get_property_name())
+	print("Sell Value: " + str(property.get_sell_value()) + " | " + "Cost: " + str(property.get_property_cost()))
 	print("Rent Price: " + str(property.get_rent_price()))
+	print("Popularity: " + str(property.get_popularity()))
+	
+	print()
+	
+	print(str(player.get_money()))

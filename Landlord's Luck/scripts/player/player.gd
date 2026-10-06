@@ -3,19 +3,29 @@ extends Node2D
 
 @export var player_data: PlayerData
 
+# Init
+func _init() -> void:
+	player_data = PlayerData.new()
+
 # Properties
 func get_properties() -> Array[Property]:
 	return player_data.properties
 
-# Earning Money
+# Money
 func add_money(amount: int) -> void:
 	player_data.money += amount
 
+func get_money() -> float:
+	return player_data.money
+
+func spend_money(amount: float) -> void:
+	player_data.money -= amount
+
 # Purchases (Properties)
 func purchase_property(property: Property) -> bool:
-	if property.get_purchase_price() <= player_data.money:
+	if property.get_property_cost() <= player_data.money:
 		player_data.properties.append(property)
-		player_data.money -= property.get_purchase_price()
+		player_data.money -= property.get_property_cost()
 		return true
 	
 	return false
