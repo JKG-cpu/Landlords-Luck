@@ -1,4 +1,3 @@
-# TODO: Update property values based on upgrade purchases
 class_name Property
 extends Node2D
 
