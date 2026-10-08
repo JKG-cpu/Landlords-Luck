@@ -17,12 +17,19 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=1200
+window/size/viewport_height=650
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+
+[gui]
+
+theme/default_font_antialiasing=0
+theme/default_font_multichannel_signed_distance_field=true
 
 [physics]
 

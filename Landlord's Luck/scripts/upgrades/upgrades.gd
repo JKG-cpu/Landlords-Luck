@@ -13,3 +13,6 @@ func get_upgrade_name() -> String:
 
 func get_cost() -> float:
 	return upgrade_cost
+
+func get_description() -> String:
+	return "No Description Given."
