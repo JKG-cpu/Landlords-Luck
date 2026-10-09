@@ -65,7 +65,4 @@ Auctions happen randomly, but one auction happens every 10 in-game days (meaning
 
 # Steps to start
 
-Need to repolish the way menus are being handled.
-  - Create a blank panel slot, so that it could clear the grid
-  - Create panels (already implemented)
 Then work on the pixl art!!! (REMEMBER TO USE LAPSE!!!)
