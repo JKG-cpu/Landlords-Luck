@@ -13,3 +13,7 @@ func setup(
 	nameLabel.text = upgrade_name
 	descriptionLabel.text = upgrade_description
 	purchaseButton.text = str(upgrade_cost)
+
+func blank_setup() -> void:
+	for child in get_children():
+		child.queue_free()

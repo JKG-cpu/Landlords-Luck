@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3m1atgh3s6pw"]
 
-[ext_resource type="Script" uid="uid://c5re7ccy73kwn" path="res://scripts/ui/property_panels.gd" id="1_ee7lh"]
+[ext_resource type="Script" uid="uid://c5re7ccy73kwn" path="res://scripts/ui/property_panels.gd" id="1_2kgxl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ro6ll"]
 bg_color = Color(0.38039216, 0.2784314, 0.1764706, 1)
@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ee7lh")
+script = ExtResource("1_2kgxl")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1703814449]
 layout_mode = 1

@@ -1,6 +1,6 @@
 extends Node
 
-const shopScene = preload("res://scenes/ui/property_shop_panel.tscn")
+const shopScene = preload("res://scenes/ui/property_shop/shop_panel.tscn")
 
 func _ready() -> void:
 	var shop_scene = shopScene.instantiate()
